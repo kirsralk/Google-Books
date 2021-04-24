@@ -3,6 +3,7 @@ import Jumbotron from "./components/Jumbotron";
 import Nav from "./components/Nav";
 import Input from "./components/Input";
 import Button from "./components/Button";
+import Search from "./components/Search";
 import API from "./utils/API";
 import Wrapper from "./components/Wrapper";
 import { BookList, BookListItem } from "./components/BookList";
@@ -35,10 +36,11 @@ function App() {
         <Nav />
           <Jumbotron />
           <Wrapper>
-            <Route exact path = "/" />
-            <Route exact path = "/saved" />
+            <Route exact path="/" component={Search} />
+            <Route exact path="/search" component={Search} />
+            <Route exact path="/saved" />
               <Container>
-                <Row>
+                {/* <Row>
                   <Col size="md-12">
                     <form>
                       <Container>
@@ -64,7 +66,7 @@ function App() {
                       </Container>
                     </form>
                   </Col>
-                </Row>
+                </Row> */}
                 <Row>
                   <Col size="xs-12">
                     {!recipes.length ? (
