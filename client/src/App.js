@@ -4,8 +4,10 @@ import Nav from "./components/Nav";
 import Input from "./components/Input";
 import Button from "./components/Button";
 import API from "./utils/API";
-import { RecipeList, RecipeListItem } from "./components/RecipeList";
+import Wrapper from "./components/Wrapper";
+import { BookList, BookListItem } from "./components/BookList";
 import { Container, Row, Col } from "./components/Grid";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
 
@@ -28,60 +30,66 @@ function App() {
   };
 
   return (
-    <div>
-      <Nav />
-      <Jumbotron />
-      <Container>
-        <Row>
-          <Col size="md-12">
-            <form>
+    <Router>
+      <div>
+        <Nav />
+          <Jumbotron />
+          <Wrapper>
+            <Route exact path = "/" />
+            <Route exact path = "/saved" />
               <Container>
                 <Row>
-                  <Col size="xs-9 sm-10">
-                    <Input
-                      name="RecipeSearch"
-                      value={recipeSearch}
-                      onChange={handleInputChange}
-                      placeholder="Search For a Recipe"
-                    />
+                  <Col size="md-12">
+                    <form>
+                      <Container>
+                        <Row>
+                          <Col size="xs-9 sm-10">
+                            <Input
+                              name="RecipeSearch"
+                              value={recipeSearch}
+                              onChange={handleInputChange}
+                              placeholder="Search For a Book"
+                            />
+                          </Col>
+                          <Col size="xs-3 sm-2">
+                            <Button
+                              onClick={handleFormSubmit}
+                              type="success"
+                              className="input-lg"
+                            >
+                                Search
+                            </Button>
+                          </Col>
+                        </Row>
+                      </Container>
+                    </form>
                   </Col>
-                  <Col size="xs-3 sm-2">
-                    <Button
-                      onClick={handleFormSubmit}
-                      type="success"
-                      className="input-lg"
-                    >
-                        Search
-                    </Button>
+                </Row>
+                <Row>
+                  <Col size="xs-12">
+                    {!recipes.length ? (
+                      <h1 className="text-center">No Books to Display</h1>
+                    ) : (
+                      <BookList>
+                        {recipes.map(recipe => {
+                          return (
+                            <BookListItem
+                              key={recipe.title}
+                              title={recipe.title}
+                              href={recipe.href}
+                              ingredients={recipe.ingredients}
+                              thumbnail={recipe.thumbnail}
+                            />
+                          );
+                        })}
+                      </BookList>
+                    )}
                   </Col>
                 </Row>
               </Container>
-            </form>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="xs-12">
-            {!recipes.length ? (
-              <h1 className="text-center">No Recipes to Display</h1>
-            ) : (
-              <RecipeList>
-                {recipes.map(recipe => {
-                  return (
-                    <RecipeListItem
-                      key={recipe.title}
-                      title={recipe.title}
-                      href={recipe.href}
-                      ingredients={recipe.ingredients}
-                      thumbnail={recipe.thumbnail}
-                    />
-                  );
-                })}
-              </RecipeList>
-            )}
-          </Col>
-        </Row>
-      </Container>
-    </div>
+        </Wrapper>
+      </div>
+    </Router>
   );
 }
 
