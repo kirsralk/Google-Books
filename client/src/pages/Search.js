@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Input from "../Input";
-import Button from "../Button";
-import API from "./API";
-import Wrapper from "../Wrapper";
+import Input from "../components/Input";
+import Button from "../components/Button";
+import API from "../utils/API";
+// import Wrapper from "../Wrapper";
 // import { BookList, BookListItem } from "./components/BookList";
-import { Container, Row, Col } from "../Grid";
+import { Container, Row, Col } from "../components/Grid";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 // import "./style.css";
 
@@ -31,32 +31,32 @@ function Search() {
   return (
     <div>
     <Row>
-    <Col size="md-12">
-      <form>
-        <Container>
-          <Row>
-            <Col size="xs-9 sm-10">
-              <Input
-                name="RecipeSearch"
-                value={recipeSearch}
-                onChange={handleInputChange}
-                placeholder="Search For a Book"
-              />
-            </Col>
-            <Col size="xs-3 sm-2">
-              <Button
-                onClick={handleFormSubmit}
-                type="success"
-                className="input-lg"
-              >
-                  Search
-              </Button>
-            </Col>
-          </Row>
-        </Container>
-      </form>
-    </Col>
-  </Row>
+        <Col size="md-12">
+            <form>
+                <Container>
+                    <Row>
+                        <Col size="xs-9 sm-10">
+                            <Input
+                                name="RecipeSearch"
+                                value={recipeSearch}
+                                onChange={handleInputChange}
+                                placeholder="Search For a Book"
+                            />
+                        </Col>
+                        <Col size="xs-3 sm-2">
+                            <Button
+                                onClick={handleFormSubmit}
+                                type="success"
+                                className="input-lg"
+                            >
+                                Search
+                            </Button>
+                        </Col>
+                    </Row>
+                </Container>
+            </form>
+        </Col>
+    </Row>
     </div>
     // <div className="jumbotron text-center">
     //   <h1>(React) Google Books Search</h1>

@@ -3,7 +3,7 @@ import Jumbotron from "./components/Jumbotron";
 import Nav from "./components/Nav";
 import Input from "./components/Input";
 import Button from "./components/Button";
-import Search from "./components/Search";
+import Search from "./pages/Search";
 import API from "./utils/API";
 import Wrapper from "./components/Wrapper";
 import { BookList, BookListItem } from "./components/BookList";
